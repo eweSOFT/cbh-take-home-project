@@ -31,8 +31,6 @@ INNERJOIN Facilities as f ON s.facility_id=f.id
 INNERJOIN Agent as a ON a.id=f.agent_id
 WHERE date BETWEEN 'start_date' AND 'end-date' order by s.date, facility_id, agent_id;
 
-Note: I used (*) to select all bcos a few number of fields are in the tables. It will be more efficient to specify the desired fields when many fields are present in the tables.
-
 The generateReport function will invoke the getShiftsByFacility() to render the model
 Different JavaScript libraries such as jsPDF Library can be used to convert html report to pdf
 Different smtp libraries can also be employed to send mail such as SmtpJS. Importing nodemailer module will also be a good alternative for sending mail.
