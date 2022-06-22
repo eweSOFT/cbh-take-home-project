@@ -1,13 +1,16 @@
 const crypto = require("crypto");
 
 exports.deterministicPartitionKey = (event) => {
-  let candidate = '0';
+  let candidate = "0";
 
-  if (event) {    
-      candidate = crypto.createHash("sha3-512")
-        .update(event)
-        .digest("hex");    
-  }  
-  
+  if (event) {
+    if (event.partitionKey) {
+      candidate = event.partitionKey;
+    } else {
+      const data = JSON.stringify(event);
+      candidate = crypto.createHash("sha3-512").update(data).digest("hex");
+    }
+  }
+
   return candidate;
 };
