@@ -9,19 +9,19 @@ You've been asked to refactor the function `deterministicPartitionKey` in [`dpk.
 You will be graded on the exhaustiveness and quality of your unit tests, the depth of your refactor, and the level of insight into your thought process provided by the written explanation.
 
 ## Your Explanation Here
-  /*if (candidate) {
+  `if (candidate) {
     if (typeof candidate !== "string") {
       candidate = JSON.stringify(candidate);
       console.log(candidate)
     }
   } else {
     candidate = TRIVIAL_PARTITION_KEY;
-  }*/
-  
+  }`
+
  Logically, if candidate variable has value (is true), it would have been hashed and the data type will be string hence; the else part will always be true. The else part is then not necessary since we could have set the value of candidate variable to zero (0) at the beginning to conserve memory.
   
- /* if (candidate.length > MAX_PARTITION_KEY_LENGTH) {
+ `if (candidate.length > MAX_PARTITION_KEY_LENGTH) {
     candidate = crypto.createHash("sha3-512").update(candidate).digest("hex");
-  }*/
+  }`
 
   There may not be any need for the above because, for the length of candidate to be more than 256, it must have been hashed. Hashing it again makes no difference.
